@@ -1,0 +1,43 @@
+#include<stdio.h>
+#include<stdlib.h>
+int Max(int * arr,int n)
+{
+    int max=-99999;
+    for(int i=0;i<n;i++)
+    {
+        if(arr[i]>max)
+        {
+            max=arr[i];
+        }
+    }
+    return max;
+}
+int main() {
+  int num=0;//number of ranges
+  scanf("%d",&num);
+  int * left=(int *)malloc(sizeof(int)*num);//left most element of range
+  int * right=(int *)malloc(sizeof(int)*num);//right most element of range
+  for(int i=0;i<num;i++)
+  {
+      scanf("%d",&left[i]);
+      scanf("%d",&right[i]);
+  }
+  int max=Max(right,num);
+  int *arr=(int *)calloc(sizeof(int),(max+2));//a hashing array
+  for(int i=0;i<num;i++)
+  {
+      arr[left[i]]++;
+      arr[right[i]+1]--;
+  }
+  
+  int prev=0,max_occur=0,var=0;
+  for(int i=0;i<max+1;i++)
+  {
+      if(prev+arr[i]>max_occur)
+      {
+          max_occur=prev+arr[i];
+      }
+      prev=prev+arr[i];
+  }
+  printf("%d",max_occur);
+}
