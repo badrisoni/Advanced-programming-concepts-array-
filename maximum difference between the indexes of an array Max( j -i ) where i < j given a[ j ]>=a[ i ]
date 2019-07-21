@@ -1,0 +1,37 @@
+
+#include <stdio.h>
+#include<stdlib.h>
+struct elements{
+  
+  int val;//value
+  int ind;//index of that value
+    
+};
+int comparator( void * a, void * b)
+{
+    return (((struct elements *)a)->val)- (((struct elements *)b)->val);
+}
+int main()
+{
+    int num=0;//number of elements in an array
+    scanf("%d",&num);
+    int *arr = (int*)malloc(sizeof(int)*num);
+    struct elements array[num];//array of objects 
+    for(int i=0;i<num;i++)//input
+    {
+      scanf("%d",&arr[i]);
+      array[i].val=arr[i];
+      array[i].ind=i;
+    }
+   qsort(array,num,sizeof(array[0]), comparator);//sorting on the basis of value such that a[ j ] always>=a[ i ]
+   int max=0;
+   int min=array[0].ind;
+   for(int i=1;i<num;i++)//logic for finding the maximum difference
+   {
+       if(array[i].ind-min>max)
+          max=array[i].ind - min;
+      min=array[i].ind<min?array[i].ind:min;      
+   }
+   printf("   %d",max);
+    return 0;
+}
