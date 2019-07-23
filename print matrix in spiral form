@@ -1,0 +1,42 @@
+#include <stdio.h>
+
+int main()
+{
+    int n=0;
+    scanf("%d",&n);
+    int arr[n][n];//array of N X N
+   int a=0,b=n-1,c=n-1,d=0,count=0;//a,b,c,d are the four boudary indexes
+   while(a<=c&&d<=b)
+  {
+    for(int i=d;i<=b;i++)
+     {
+         arr[a][i]=++count;
+     }
+    a++;
+    for(int i=a;i<=c;i++)
+      { 
+          arr[i][b]=++count;
+      }
+    b--;
+    for(int i=b;i>=d;i--)
+       {
+           arr[c][i]=++count;
+       }   
+    c--;
+    for(int i=c;i>=a;i--)
+       {
+           arr[i][d]=++count;
+       }
+    d++;
+  }
+  for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<n;j++)
+        {
+            printf("%d ",arr[i][j]);//printing
+        }
+        printf("\n");
+    }
+    
+    return 0;
+}
