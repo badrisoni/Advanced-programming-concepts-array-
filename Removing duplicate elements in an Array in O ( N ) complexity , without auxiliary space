@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+    int num=0;
+    scanf("%d",&num);//size of array
+    int * arr= (int *)malloc(sizeof(int)*num);//array
+    for(int i=0;i<num;i++)
+    {
+        scanf("%d",&arr[i]);//inputs of array
+    }
+    int j=0;
+    for(int i=1;i<num;i++)//changing positions of elements in that array
+    {
+        if(arr[i]!=arr[j])
+        {
+            j++;
+            arr[j]=arr[i];
+        }
+    }
+for(int i=0;i<=j;i++)
+{
+    printf("%d",arr[i]);//printing
+}
+    return 0;
+}
