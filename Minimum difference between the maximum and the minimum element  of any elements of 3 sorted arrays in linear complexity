@@ -1,0 +1,84 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+int max(int a, int b,int c)
+{
+    if(a>=b && a>=c)
+    {
+        
+        return a;
+    }
+    else if(b>=c && b>=a)
+    {
+                return b;
+    }
+    else
+    {
+        
+        return c;
+    }
+}
+int min(int a, int b,int c,int * ptr)
+{
+    if(a<=b && a<=c)
+    {
+        *ptr=1;
+        return a;
+    }
+    else if(b<=c && b<=a)
+    {
+        *ptr=2;
+        return b;
+    }
+    else
+    {
+        *ptr=3;
+        return c;
+    }
+}
+int main()
+{
+    int n1=0;
+     printf("Enter size of first array: ");
+    scanf("%d",&n1);
+    int * arr1= (int *)malloc(sizeof(int)*n1);
+    for(int i=0;i<n1;i++)
+    {
+        scanf("%d",&arr1[i]);
+    }
+    int n2=0;
+    printf("Enter size of second array: ");
+    scanf("%d",&n2);
+     int * arr2= (int *)malloc(sizeof(int)*n2);
+       for(int i=0;i<n2;i++)
+    {
+        scanf("%d",&arr2[i]);
+    }
+   int n3=0;
+    printf("Enter size of third array: ");
+    scanf("%d",&n3);
+     int * arr3= (int *)malloc(sizeof(int)*n3);
+       for(int i=0;i<n3;i++)
+    {
+        scanf("%d",&arr3[i]);
+    }
+    int i=0,j=0,k=0,type=0,Min=99999;
+    while(i<n1 && j<n2 && k<n3)
+    {
+        int temp=max(arr1[i],arr2[j],arr3[k])-min(arr1[i],arr2[j],arr3[k],&type);
+        if(temp<Min)
+        {
+            Min=temp;
+            
+        }
+        if(type==1)
+        i++;
+        else if(type==2)
+        j++;
+        else
+        k++;
+        
+    }
+   printf("\n   %d",Min); 
+    return 0;
+}
