@@ -1,0 +1,43 @@
+// for problem statement follow the link https://www.codechef.com/problems/FORESTGA
+#include <stdio.h>
+#include <stdlib.h>
+int main(void) {
+unsigned long long int N,M,L;
+scanf("%llu",&N);
+scanf("%llu",&M);
+scanf("%llu",&L);
+unsigned long long int * Hi=(unsigned long long int *)malloc(sizeof(unsigned long long int)*N);
+unsigned long long int * Ri=(unsigned long long int *)malloc(sizeof(unsigned long long int)*N);
+for(unsigned long long int i=0;i<N;++i)
+{
+    scanf("%llu",&Hi[i]);
+    scanf("%llu",&Ri[i]);
+}
+unsigned long long int l=0,r,sum=0,mid=0,temp=0;
+r=M;
+while(l<r)
+{
+    mid=(l+r)/2;
+    sum=0;
+    for(unsigned long long int i=0;i<N;++i)
+    {
+        temp=0;
+        temp=Hi[i]+Ri[i]*mid;
+        if(temp>=L)
+                sum+=temp;
+        {
+            if(sum>=M)
+            break;
+        }
+    }
+    if(sum>=M)
+        r=mid;
+    else
+        l=mid+1;
+    
+}
+printf("%llu",r);
+	return 0;
+}
+
+
